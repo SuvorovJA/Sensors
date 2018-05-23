@@ -69,7 +69,7 @@ class ALinearIntegerEquationSaw {
 }
 
 
-public class AStrategy implements EmulationStrategy {
+public class AFunctionStrategy implements EmulationStrategy {
 
 	private int ticks;
 	private int maxVal;		//
@@ -77,7 +77,7 @@ public class AStrategy implements EmulationStrategy {
 	private int interval;	//
 	private ALinearIntegerEquationSaw lies;
 	
-	public AStrategy() {
+	public AFunctionStrategy() {
 		super();
 		this.ticks = 0;
 		this.maxVal = 100;
@@ -86,7 +86,7 @@ public class AStrategy implements EmulationStrategy {
 		this.lies = new ALinearIntegerEquationSaw(this.minVal, this.maxVal, this.interval);
 	}
 	
-	public AStrategy(int minVal, int maxVal, int interval) {
+	public AFunctionStrategy(int minVal, int maxVal, int interval) {
 		super();
 		this.ticks = 0;
 		this.maxVal = maxVal;
