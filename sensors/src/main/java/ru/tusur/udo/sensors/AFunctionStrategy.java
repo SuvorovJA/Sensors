@@ -2,8 +2,8 @@ package ru.tusur.udo.sensors;
 
 class ALinearIntegerEquationSaw {
 
-	// TODO - extract to external class with signal functions	
-	
+	// TODO - extract to external class with signal functions
+
 	/**
 	 * parameters min, max, period.
 	 * 
@@ -57,7 +57,8 @@ class ALinearIntegerEquationSaw {
 			throw new IllegalArgumentException("x<0!");
 		// reduce x to first period only
 		x -= this.period * (x / this.period);
-		// y = k*x + m where k=-(a/b) m=-(c/b), if using k indirect then 0*x problem occur for int type
+		// y = k*x + m where k=-(a/b) m=-(c/b), if using k indirect then 0*x
+		// problem occur for int type
 		if (x <= this.poluPeriod) {
 			result = -(this.a1 * x) / this.b1 + this.mDirect;
 		} else {
@@ -68,15 +69,15 @@ class ALinearIntegerEquationSaw {
 
 }
 
-
 public class AFunctionStrategy implements EmulationStrategy {
 
 	private int ticks;
-	private int maxVal;		//
-	private int minVal;		//	этого всего тут на самом деле не надо, только lies объект нужен и тикалка
-	private int interval;	//
+	private int maxVal; //
+	private int minVal; // этого всего тут на самом деле не надо, только lies
+						// объект нужен и тикалка
+	private int interval; //
 	private ALinearIntegerEquationSaw lies;
-	
+
 	public AFunctionStrategy() {
 		super();
 		this.ticks = 0;
@@ -85,7 +86,7 @@ public class AFunctionStrategy implements EmulationStrategy {
 		this.interval = 400;
 		this.lies = new ALinearIntegerEquationSaw(this.minVal, this.maxVal, this.interval);
 	}
-	
+
 	public AFunctionStrategy(int minVal, int maxVal, int interval) {
 		super();
 		this.ticks = 0;

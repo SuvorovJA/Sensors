@@ -7,38 +7,55 @@
     http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.sprinspringframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<bean id="astrategy" class="ru.tusur.udo.sensors.AStrategy">
-		<property name="interval" value="3" />
+		<property name="interval" value="30" />
 		<property name="min" value="0" />
 		<property name="max" value="100" />
+	</bean>
+
+	<bean id="afunctionstrategy" class="ru.tusur.udo.sensors.AFunctionStrategy">
+		<property name="interval" value="300" />
+		<property name="minVal" value="40" />
+		<property name="maxVal" value="60" />
 	</bean>
 
 	<bean id="dstrategy" class="ru.tusur.udo.sensors.DStrategy">
 		<property name="interval" value="3" />
 	</bean>
 
-	<bean id="sensor1" class="ru.tusur.udo.sensors.Sensor">
-		<property name="id" value="Test Digital sensor1" />
+	<bean id="sensor1" class="ru.tusur.udo.sensors.SensorImpl">
+		<property name="serialNumber" value="120005" />
 		<property name="type" value="0" />
 		<property name="emulationStrategy" ref="dstrategy" />
 	</bean>
 
-	<bean id="sensor2" class="ru.tusur.udo.sensors.Sensor">
-		<property name="id" value="Test Analog sensor2" />
+	<bean id="sensor2" class="ru.tusur.udo.sensors.SensorImpl">
+		<property name="serialNumber" value="120006" />
 		<property name="type" value="1" />
 		<property name="emulationStrategy" ref="astrategy" />
 	</bean>
 
+	<bean id="sensor3" class="ru.tusur.udo.sensors.SensorImpl">
+		<property name="serialNumber" value="120007" />
+		<property name="type" value="1" />
+		<property name="emulationStrategy" ref="afunctionstrategy" />
+	</bean>
+
+	<bean id="sensor4" class="ru.tusur.udo.sensors.SensorImpl">
+		<property name="serialNumber" value="120008" />
+		<property name="type" value="1" />
+		<property name="emulationStrategy" ref="astrategy" />
+	</bean>
+	
+	
 	<bean id="sensors" class="java.util.ArrayList">
 		<constructor-arg>
 			<list>
 				<ref bean="sensor1" />
 				<ref bean="sensor2" />
+				<ref bean="sensor3" />
+				<ref bean="sensor4" />
 			</list>
 		</constructor-arg>
-	</bean>
-
-	<bean id="runtime" class="ru.tusur.udo.sensors.SensorEmulationRuntime">
-		<property name="sensors" ref="sensors" />
 	</bean>
 
 </beans>
