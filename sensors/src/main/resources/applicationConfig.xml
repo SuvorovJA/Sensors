@@ -1,0 +1,44 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.sprinspringframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<bean id="astrategy" class="ru.tusur.udo.sensors.AStrategy">
+		<property name="interval" value="3" />
+		<property name="min" value="0" />
+		<property name="max" value="100" />
+	</bean>
+
+	<bean id="dstrategy" class="ru.tusur.udo.sensors.DStrategy">
+		<property name="interval" value="3" />
+	</bean>
+
+	<bean id="sensor1" class="ru.tusur.udo.sensors.Sensor">
+		<property name="id" value="Test Digital sensor1" />
+		<property name="type" value="0" />
+		<property name="emulationStrategy" ref="dstrategy" />
+	</bean>
+
+	<bean id="sensor2" class="ru.tusur.udo.sensors.Sensor">
+		<property name="id" value="Test Analog sensor2" />
+		<property name="type" value="1" />
+		<property name="emulationStrategy" ref="astrategy" />
+	</bean>
+
+	<bean id="sensors" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="sensor1" />
+				<ref bean="sensor2" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="runtime" class="ru.tusur.udo.sensors.SensorEmulationRuntime">
+		<property name="sensors" ref="sensors" />
+	</bean>
+
+</beans>
