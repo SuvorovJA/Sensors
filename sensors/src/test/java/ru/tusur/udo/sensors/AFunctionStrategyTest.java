@@ -82,7 +82,7 @@ class LinearIntegerEquationSaw {
 
 }
 
-public class AStrategyTest extends TestCase {
+public class AFunctionStrategyTest extends TestCase {
 
 	private DumbASensor sensorEmulator;
 
@@ -100,7 +100,7 @@ public class AStrategyTest extends TestCase {
 		//
 		LinearIntegerEquationSaw lies = new LinearIntegerEquationSaw(minval, maxval, periodInTicks); // humor ?
 
-		AStrategy as = new AStrategy();
+		AFunctionStrategy as = new AFunctionStrategy();
 		assertNotNull(as);
 		as.setMaxVal(maxval);
 		as.setMinVal(minval);
@@ -111,7 +111,7 @@ public class AStrategyTest extends TestCase {
 			assertEquals(lies.getY(i), sensorEmulator.getValue());
 		}
 		
-		AStrategy as2 = new AStrategy(minval,maxval,periodInTicks);
+		AFunctionStrategy as2 = new AFunctionStrategy(minval,maxval,periodInTicks);
 		assertNotNull(as2);
 		for (int i = 0; i < ticksForTest; i++) {
 //			System.out.println(i + " -> " + lies.getY(i));
