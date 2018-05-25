@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.camel.impl.DefaultCamelContext;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -13,15 +14,17 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App {
 	public static void main(String[] args) {
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationConfig.xml");
-		List<Sensor> ls = (ArrayList<Sensor>) ctx.getBean("sensors");		
-//		try {
-//			camelCtx.start();
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		ApplicationContext ctx2 = new AnnotationConfigApplicationContext(AppContext.class);		
+		DefaultCamelContext camelCtx = (DefaultCamelContext) ctx2.getBean("camelContext");
+		
+		try {
+			camelCtx.start();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		System.out.println("Sensors Start.");
-//		while(true){}
+		while(true){}
 	}
 }
