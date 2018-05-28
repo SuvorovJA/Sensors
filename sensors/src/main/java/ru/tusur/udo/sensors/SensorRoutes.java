@@ -18,7 +18,16 @@ public class SensorRoutes extends RouteBuilder {
 
 	@Override
 	public void configure() throws Exception {
-		from("timer://timer?period=1000").process(this.processor);
+		
+		from("timer://timer?period=1000")
+			.process(this.processor)
+			.to("direct:toJSON");
+	
+		from("direct:toJSON").process(new Processor() {			
+			public void process(Exchange arg0) throws Exception {
+				System.out.println(arg0.getIn().getBody() + " RECEIVED");
+			}
+		});
 	}
 
 }

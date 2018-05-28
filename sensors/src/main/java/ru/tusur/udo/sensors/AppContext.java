@@ -15,6 +15,13 @@ public class AppContext {
 	public ClassPathXmlApplicationContext classPathXmlApplicationContext() {
 		return new ClassPathXmlApplicationContext("applicationConfig.xml");		
 	}
+
+	@Bean
+	public CamelContext camelContext() throws Exception{
+		DefaultCamelContext camelCtx = new DefaultCamelContext();
+		camelCtx.addRoutes(this.sensorRoutes());
+		return camelCtx;
+	}	
 	
 	@Bean
 	public List<Sensor> listSensors() {
@@ -22,10 +29,10 @@ public class AppContext {
 	}
 	
 	@Bean
-	public CamelContext camelContext() throws Exception{
-		DefaultCamelContext camelCtx = new DefaultCamelContext();
-		camelCtx.addRoutes(this.sensorRoutes());
-		return camelCtx;
+	public EmulationProcessor emulationProcessor() {
+		EmulationProcessor emulationProcessor = new EmulationProcessor();
+		emulationProcessor.setListSensors(listSensors());
+		return emulationProcessor;
 	}
 
 	@Bean
@@ -35,11 +42,5 @@ public class AppContext {
 		return sensorRoutes;
 	}
 	
-	@Bean
-	public EmulationProcessor emulationProcessor() {
-		EmulationProcessor emulationProcessor = new EmulationProcessor();
-		emulationProcessor.setListSensors(listSensors());
-		return emulationProcessor;
-	}
 
 }
