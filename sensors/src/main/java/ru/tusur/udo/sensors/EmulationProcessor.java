@@ -20,7 +20,8 @@ public class EmulationProcessor implements Processor {
 	}
 
 	public void process(Exchange arg0) throws Exception {
-		System.out.println("camel processor timer hello ");
+
+		// System.out.println("emulProcessor");
 
 		// for (Sensor s : this.listSensors){
 		// ((SensorImpl) s).invalidate();

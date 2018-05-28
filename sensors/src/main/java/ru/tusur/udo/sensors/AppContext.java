@@ -34,11 +34,17 @@ public class AppContext {
 		emulationProcessor.setListSensors(listSensors());
 		return emulationProcessor;
 	}
+	
+	@Bean
+	public JSONProcessor jsonProcessor(){
+		return new JSONProcessor();
+	}
 
 	@Bean
 	public SensorRoutes sensorRoutes(){
 		SensorRoutes sensorRoutes =  new SensorRoutes();
-		sensorRoutes.setProcessor(emulationProcessor());
+		sensorRoutes.setEmulProcessor(emulationProcessor());
+		sensorRoutes.setJsonProcessor(jsonProcessor());
 		return sensorRoutes;
 	}
 	
