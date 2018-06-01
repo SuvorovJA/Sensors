@@ -13,7 +13,7 @@
 	</bean>
 
 	<bean id="afunctionstrategy" class="ru.tusur.udo.sensors.AFunctionStrategy">
-		<property name="interval" value="300" />
+		<property name="interval" value="10" />
 		<property name="minVal" value="40" />
 		<property name="maxVal" value="60" />
 	</bean>

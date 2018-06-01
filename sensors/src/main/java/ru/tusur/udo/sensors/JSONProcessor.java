@@ -20,7 +20,5 @@ public class JSONProcessor implements Processor {
 			public String getNode() { return "TOMSK"; }
 			public List<Sensor> getSensors() { return sensors; }
 		}));
-
 	}
-
 }
