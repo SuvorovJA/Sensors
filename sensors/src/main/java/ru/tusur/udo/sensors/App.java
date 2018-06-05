@@ -1,12 +1,10 @@
 package ru.tusur.udo.sensors;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.camel.impl.DefaultCamelContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Hello world!
@@ -14,6 +12,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App {
 	public static void main(String[] args) {
+		
+		Logger logger = LoggerFactory.getLogger(App.class);
+		logger.info("Sensors: main");
+		
 		ApplicationContext ctx2 = new AnnotationConfigApplicationContext(AppContext.class);		
 		DefaultCamelContext camelCtx = (DefaultCamelContext) ctx2.getBean("camelContext");
 		
