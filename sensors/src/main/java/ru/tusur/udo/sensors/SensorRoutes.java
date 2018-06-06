@@ -37,6 +37,6 @@ public class SensorRoutes extends RouteBuilder {
 			public void process(Exchange arg0) throws Exception {
 				System.out.println(arg0.getIn().getBody());
 			}
-		});
+		}).to("activemq:SENSORS");
 	}
 }
