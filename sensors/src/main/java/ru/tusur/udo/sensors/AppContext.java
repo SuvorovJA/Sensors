@@ -1,7 +1,6 @@
 package ru.tusur.udo.sensors;
 
 import java.util.List;
-//import java.util.Properties;
 import java.util.Properties;
 
 import javax.jms.ConnectionFactory;
@@ -34,20 +33,26 @@ public class AppContext {
 		};
 		Context c = new InitialContext(ENV);
 		return (ConnectionFactory) c.lookup("jms/RemoteConnectionFactory");
+//		return (ConnectionFactory) c.lookup("java:jboss/exported/jms/RemoteConnectionFactory");
 	}
 
-	@Bean
-	public ActiveMQComponent activeMQComponent() throws NamingException {
-		ActiveMQComponent amqc = ActiveMQComponent.activeMQComponent();
-		amqc.setConnectionFactory(connectionFactory());
-		return amqc;
-	}
+	
+// refactor: move to 	CamelContext
+//	@Bean
+//	public ActiveMQComponent activeMQComponent() throws NamingException {
+//		ActiveMQComponent amqc = ActiveMQComponent.activeMQComponent();
+//		amqc.setConnectionFactory(connectionFactory());
+//		return amqc;
+//	}
 
 	@Bean
 	public CamelContext camelContext() throws Exception {
 		DefaultCamelContext camelCtx = new DefaultCamelContext();
 		camelCtx.addRoutes(this.sensorRoutes());
-		camelCtx.addComponent("activemq", activeMQComponent());
+		//
+		ActiveMQComponent amqc = ActiveMQComponent.activeMQComponent();
+		amqc.setConnectionFactory(this.connectionFactory());
+		camelCtx.addComponent("activemq", amqc);
 		return camelCtx;
 	}
 
