@@ -1,13 +1,18 @@
 package ru.tusur.udo.sensors;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties( "emulationStrategy")
 public class SensorImpl implements Sensor, SensorEmulator {
 	
 	private int type;
 	private int value;
 //	private int status;
 	private String serialNumber;
+	
 	private EmulationStrategy emulationStrategy;
-
+//	private transient EmulationStrategy emulationStrategy;
+	
 	public EmulationStrategy getEmulationStrategy() {
 		return emulationStrategy;
 	}
